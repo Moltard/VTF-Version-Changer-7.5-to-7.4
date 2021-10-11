@@ -1,0 +1,199 @@
+﻿<Window x:Class="VTFversionChanger.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:VTFversionChanger" 
+        mc:Ignorable="d"
+        Title="Moltard's VTF Version Changer" Height="450" Width="800" Icon="icon.ico"
+        MinHeight="450" MinWidth="800">
+
+    <Window.Resources>
+
+        <!--#region Strings - Titles-->
+
+        <sys:String x:Key="TextTitleVtfVersion">VTF Version Changer</sys:String>
+        <sys:String x:Key="TextTitleVtfFolder">VTF Version Changer - Folder</sys:String>
+        <sys:String x:Key="TextTitleVtfFile">VTF Version Changer - File</sys:String>
+        <sys:String x:Key="TextTitleLogs">Execution &amp; Logs</sys:String>
+
+        <sys:String x:Key="TextTitleTool">Tool</sys:String>
+
+        <!--#endregion-->
+
+        <!--#region Strings - Generic-->
+
+        <sys:String x:Key="TextLabelBrowseButton">Browse</sys:String>
+        <sys:String x:Key="TextLabelCancelButton">Cancel</sys:String>
+        <sys:String x:Key="TextLabelVtfFolder">VTF Folder</sys:String>
+        <sys:String x:Key="TextLabelVtfFile">VTF File</sys:String>
+
+        <!--#endregion-->
+
+        <sys:String x:Key="TextLabelRecursiveFolder">Folder and Subfolders</sys:String>
+        <sys:String x:Key="TextTooltipRecursiveFolder">Convert every .vtf in the folder and its subfolders</sys:String>
+
+        <sys:String x:Key="TextLabelVerboseVtfFolder">Verbose</sys:String>
+        <sys:String x:Key="TextTooltipVerboseVtfFolder" xml:space="preserve">If checked, logs every processed files
+If not, only logs the main informations</sys:String>
+
+        <sys:String x:Key="TextLabelErrorVtfFolder">Stop Conversion on Error</sys:String>
+        <sys:String x:Key="TextTooltipErrorVtfFolder" xml:space="preserve">If an error happens during a file conversion,
+stop the whole process</sys:String>
+
+        <sys:String x:Key="TextDescriptionVtfFolderPage">Convert a folder of VTF 7.5 to 7.4</sys:String>
+        <sys:String x:Key="TextDescriptionVtfFilePage">Convert a single VTF 7.5 to 7.4</sys:String>
+
+        <sys:String x:Key="TextLabelButtonConvertVTFs">Convert VTFs</sys:String>
+        <sys:String x:Key="TextLabelButtonConvertVTF">Convert VTF</sys:String>
+
+        
+        
+        
+    </Window.Resources>
+    
+    <Border Style="{StaticResource ToolMainBorderStyle}">
+        <TabControl Name="MainTabControl" Style="{StaticResource ToolMainTabStyle}">
+            <TabItem Name="TabVtfFolder">
+                <TabItem.Header>
+                    <TextBlock Text="{StaticResource TextTitleVtfFolder}"/>
+                </TabItem.Header>
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top">
+                        <TextBlock Style="{StaticResource PageTitle}" Text="{StaticResource TextTitleVtfFolder}"/>
+                        <Grid Style="{StaticResource GridPageDescription}">
+                            <TextBlock Style="{StaticResource PageDescription}" Text="{StaticResource TextDescriptionVtfFolderPage}" />
+                        </Grid>
+                        <ContentControl Content="{StaticResource ToolSeparator}"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <Grid Margin="{StaticResource MarginNewElements}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Style="{StaticResource GridColumnSize1}"/>
+                                <ColumnDefinition Style="{StaticResource GridColumnSize5}"/>
+                                <ColumnDefinition Style="{StaticResource GridColumnSize1}"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Style="{StaticResource ToolOptionLabel}" Text="{StaticResource TextLabelVtfFolder}" />
+                            <TextBox Grid.Column="1" Style="{StaticResource ToolOptionTextBox}" Name="VtfFolderTextBox" TextChanged="VtfFolderTextBox_TextChanged"
+                                     PreviewDragOver="DragOverTextBoxFix" PreviewDragEnter="DragOverTextBoxFix" PreviewDrop="VtfFolderTextBox_Drop" />
+
+                            <Button Grid.Column="2" Style="{StaticResource ToolOptionButton}" Name="VtfFolderBrowseButton" Click="VtfFolderBrowseButton_Click" >
+                                <TextBlock Style="{StaticResource ToolOptionButtonLabel}" Text="{StaticResource TextLabelBrowseButton}"/>
+                            </Button>
+                        </Grid>
+
+
+                        <Grid Margin="{StaticResource MarginNewElements}">
+                            <CheckBox Name="VtfFolderCheckboxRecursive" HorizontalAlignment="Center" IsChecked="True" 
+                                      ToolTip="{StaticResource TextTooltipRecursiveFolder}" Content="{StaticResource TextLabelRecursiveFolder}" />
+                        </Grid>
+                        
+                        <Grid Margin="{StaticResource MarginNewElements}">
+                            <CheckBox Name="VtfFolderCheckboxVerbose" HorizontalAlignment="Center" IsChecked="False" 
+                                      ToolTip="{StaticResource TextTooltipVerboseVtfFolder}" Content="{StaticResource TextLabelVerboseVtfFolder}" />
+                        </Grid>
+                        
+                        <Grid Margin="{StaticResource MarginNewElements}">
+                            <CheckBox Name="VtfFolderCheckboxError" HorizontalAlignment="Center" IsChecked="False" 
+                                      ToolTip="{StaticResource TextTooltipErrorVtfFolder}" Content="{StaticResource TextLabelErrorVtfFolder}" />
+                        </Grid>
+                        
+                        <Grid Margin="{StaticResource MarginNewElements}">
+                            <Button Style="{StaticResource ToolExecuteButton}" Name="ConvertVtfFolderButton" IsEnabled="False" Click="ConvertVtfFolderButton_Click" >
+                                <TextBlock Style="{StaticResource ToolOptionButtonLabel}" Text="{StaticResource TextLabelButtonConvertVTFs}"/>
+                            </Button>
+                        </Grid>
+
+                        
+                    </StackPanel>
+
+
+
+
+                </DockPanel>
+
+            </TabItem>
+
+
+            <TabItem Name="TabVtfFile">
+                <TabItem.Header>
+                    <TextBlock Text="{StaticResource TextTitleVtfFile}"/>
+                </TabItem.Header>
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top">
+                        <TextBlock Style="{StaticResource PageTitle}" Text="{StaticResource TextTitleVtfFile}"/>
+                        <Grid Style="{StaticResource GridPageDescription}">
+                            <TextBlock Style="{StaticResource PageDescription}" Text="{StaticResource TextDescriptionVtfFilePage}" />
+                        </Grid>
+                        <ContentControl Content="{StaticResource ToolSeparator}"/>
+                    </StackPanel>
+
+                    <StackPanel>
+
+
+                        <Grid Margin="{StaticResource MarginNewElements}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Style="{StaticResource GridColumnSize1}"/>
+                                <ColumnDefinition Style="{StaticResource GridColumnSize5}"/>
+                                <ColumnDefinition Style="{StaticResource GridColumnSize1}"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Style="{StaticResource ToolOptionLabel}" Text="{StaticResource TextLabelVtfFile}" />
+                            <TextBox Grid.Column="1" Style="{StaticResource ToolOptionTextBox}" Name="VtfFileTextBox" TextChanged="VtfFileTextBox_TextChanged"
+                                     PreviewDragOver="DragOverTextBoxFix" PreviewDragEnter="DragOverTextBoxFix" PreviewDrop="VtfFileTextBox_Drop" />
+
+                            <Button Grid.Column="2" Style="{StaticResource ToolOptionButton}" Name="VtfFileBrowseButton" Click="VtfFileBrowseButton_Click" >
+                                <TextBlock Style="{StaticResource ToolOptionButtonLabel}" Text="{StaticResource TextLabelBrowseButton}"/>
+                            </Button>
+                        </Grid>
+
+                        <Grid Margin="{StaticResource MarginNewElements}">
+                            <Button Style="{StaticResource ToolExecuteButton}" Name="ConvertVtfFileButton" IsEnabled="False" Click="ConvertVtfFileButton_Click" >
+                                <TextBlock Style="{StaticResource ToolOptionButtonLabel}" Text="{StaticResource TextLabelButtonConvertVTF}"/>
+                            </Button>
+                        </Grid>
+
+                    </StackPanel>
+
+                </DockPanel>
+
+            </TabItem>
+
+            <TabItem Name="TabLogs">
+                <TabItem.Header>
+                    <TextBlock Text="{StaticResource TextTitleLogs}"/>
+                </TabItem.Header>
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top">
+                        <TextBlock Style="{StaticResource PageTitle}" Text="{StaticResource TextTitleLogs}"/>
+                        <ContentControl Content="{StaticResource ToolSeparator}"/>
+
+                        <Grid Margin="{StaticResource MarginNewElements}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Style="{StaticResource GridColumnSize5}"/>
+                                <ColumnDefinition Style="{StaticResource GridColumnSize1}"/>
+                            </Grid.ColumnDefinitions>
+                            <ProgressBar Grid.Column="0" Style="{StaticResource ToolLogsProgressBar}" Name="LogsProgressBar" Minimum="0" Maximum="100" Value="{Binding CurrentProgress, Mode=OneWay}" />
+                            <Button Grid.Column="1" Style="{StaticResource ToolOptionButton}" Name="LogsCancelButton" IsEnabled="False" Click="LogsCancelButton_Click">
+                                <TextBlock Style="{StaticResource ToolOptionButtonLabel}" Text="{StaticResource TextLabelCancelButton}"/>
+                            </Button>
+                        </Grid>
+                        
+                    </StackPanel>
+
+                    
+                    <Grid Style="{StaticResource ToolLogsGrid}">
+                        <TextBox Style="{StaticResource ToolLogsTextBox}" Name="LogsTextBox" 
+                             Text="{Binding Logs, Mode=OneWay}" IsReadOnly="True" Opacity="0.7"
+                             HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
+
+                    </Grid>
+
+                </DockPanel>
+            </TabItem>
+            
+        </TabControl>
+        
+    </Border>
+</Window>
