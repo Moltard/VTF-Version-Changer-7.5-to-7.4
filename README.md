@@ -21,7 +21,7 @@ The improvements of this tool over the other existing converters are the followi
 
 ## Download
 
-[VTFVersionChanger v1.0](https://github.com/Moltard/BspZipGUI/releases/latest)
+[VTFVersionChanger v1.0](https://github.com/Moltard/VTF-Version-Changer-7.5-to-7.4/releases/latest)
 
 ## How to use - Folder Conversion
 
