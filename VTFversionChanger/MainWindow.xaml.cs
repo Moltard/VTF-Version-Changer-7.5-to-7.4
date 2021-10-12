@@ -206,7 +206,6 @@ namespace VTFversionChanger
             }
         }
 
-
         private void VtfFolderTextBox_Drop(object sender, DragEventArgs e)
         {
             string directoryPath = DragDropGetPath(e, DragDropMode.Directory);
@@ -215,8 +214,6 @@ namespace VTFversionChanger
                 VtfFolderTextBox.Text = directoryPath;
             }
         }
-
-
 
         private void ConvertVtfFolderButton_Click(object sender, RoutedEventArgs e)
         {
@@ -291,7 +288,7 @@ namespace VTFversionChanger
                 messageIcon = MessageBoxImage.Information;
                 messageText = MessageConstants.MessageVtfFolderSuccess;
             }
-            catch (CancelConversionVTFException ex)
+            catch (CancelConversionVTFException)
             {
                 // User Cancel
                 sw.Stop();
@@ -299,7 +296,7 @@ namespace VTFversionChanger
                 messageIcon = MessageBoxImage.Warning;
                 messageText = MessageConstants.MessageVtfFolderCancel;
             }
-            catch (ErrorConversionVTFException ex)
+            catch (ErrorConversionVTFException)
             {
                 // Error during the conversion
                 sw.Stop();
@@ -318,7 +315,6 @@ namespace VTFversionChanger
             // Unlock the tabs
             cancelButton = null;
             UnlockAllTabs();
-
         }
 
         private async Task ExecuteTaskConvertVtfFolder(ConverterVtfFolder converter)

@@ -6,8 +6,8 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:VTFversionChanger" 
         mc:Ignorable="d"
-        Title="Moltard's VTF Version Changer" Height="450" Width="800" Icon="icon.ico"
-        MinHeight="450" MinWidth="800">
+        Title="Moltard's VTF Version Changer" Height="500" Width="800" Icon="icon.ico"
+        MinHeight="500" MinWidth="800">
 
     <Window.Resources>
 
@@ -32,7 +32,7 @@
         <!--#endregion-->
 
         <sys:String x:Key="TextLabelRecursiveFolder">Folder and Subfolders</sys:String>
-        <sys:String x:Key="TextTooltipRecursiveFolder">Convert every .vtf in the folder and its subfolders</sys:String>
+        <sys:String x:Key="TextTooltipRecursiveFolder">Convert every VTF in the folder and its subfolders</sys:String>
 
         <sys:String x:Key="TextLabelVerboseVtfFolder">Verbose</sys:String>
         <sys:String x:Key="TextTooltipVerboseVtfFolder" xml:space="preserve">If checked, logs every processed files
@@ -67,7 +67,7 @@ stop the whole process</sys:String>
                         </Grid>
                         <ContentControl Content="{StaticResource ToolSeparator}"/>
                     </StackPanel>
-
+                    
                     <StackPanel>
                         <Grid Margin="{StaticResource MarginNewElements}">
                             <Grid.ColumnDefinitions>
@@ -84,36 +84,28 @@ stop the whole process</sys:String>
                             </Button>
                         </Grid>
 
-
                         <Grid Margin="{StaticResource MarginNewElements}">
                             <CheckBox Name="VtfFolderCheckboxRecursive" HorizontalAlignment="Center" IsChecked="True" 
                                       ToolTip="{StaticResource TextTooltipRecursiveFolder}" Content="{StaticResource TextLabelRecursiveFolder}" />
                         </Grid>
-                        
+
                         <Grid Margin="{StaticResource MarginNewElements}">
                             <CheckBox Name="VtfFolderCheckboxVerbose" HorizontalAlignment="Center" IsChecked="False" 
                                       ToolTip="{StaticResource TextTooltipVerboseVtfFolder}" Content="{StaticResource TextLabelVerboseVtfFolder}" />
                         </Grid>
-                        
+
                         <Grid Margin="{StaticResource MarginNewElements}">
                             <CheckBox Name="VtfFolderCheckboxError" HorizontalAlignment="Center" IsChecked="False" 
                                       ToolTip="{StaticResource TextTooltipErrorVtfFolder}" Content="{StaticResource TextLabelErrorVtfFolder}" />
                         </Grid>
-                        
+
                         <Grid Margin="{StaticResource MarginNewElements}">
                             <Button Style="{StaticResource ToolExecuteButton}" Name="ConvertVtfFolderButton" IsEnabled="False" Click="ConvertVtfFolderButton_Click" >
                                 <TextBlock Style="{StaticResource ToolOptionButtonLabel}" Text="{StaticResource TextLabelButtonConvertVTFs}"/>
                             </Button>
                         </Grid>
-
-                        
                     </StackPanel>
-
-
-
-
                 </DockPanel>
-
             </TabItem>
 
 
@@ -131,8 +123,6 @@ stop the whole process</sys:String>
                     </StackPanel>
 
                     <StackPanel>
-
-
                         <Grid Margin="{StaticResource MarginNewElements}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Style="{StaticResource GridColumnSize1}"/>
@@ -153,11 +143,8 @@ stop the whole process</sys:String>
                                 <TextBlock Style="{StaticResource ToolOptionButtonLabel}" Text="{StaticResource TextLabelButtonConvertVTF}"/>
                             </Button>
                         </Grid>
-
                     </StackPanel>
-
                 </DockPanel>
-
             </TabItem>
 
             <TabItem Name="TabLogs">
@@ -179,20 +166,16 @@ stop the whole process</sys:String>
                                 <TextBlock Style="{StaticResource ToolOptionButtonLabel}" Text="{StaticResource TextLabelCancelButton}"/>
                             </Button>
                         </Grid>
-                        
                     </StackPanel>
 
-                    
                     <Grid Style="{StaticResource ToolLogsGrid}">
                         <TextBox Style="{StaticResource ToolLogsTextBox}" Name="LogsTextBox" 
                              Text="{Binding Logs, Mode=OneWay}" IsReadOnly="True" Opacity="0.7"
                              HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" />
 
                     </Grid>
-
                 </DockPanel>
             </TabItem>
-            
         </TabControl>
         
     </Border>
